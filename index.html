@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <title>Random Dog Photo Generator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='main.css'>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Dog Photo Generator</h1>
+        </header>
+        <main>
+            <form>
+                <fieldset>
+                    <legend>How many dogs would you like to see?</legend>
+                    <label for='number'>
+                        <input class='number-input' type='number' name='dog_number' min='1' max='50' required>
+                    </label>
+                    <label for='submit'>
+                        <input type='submit' value='Submit'>
+                    </label>
+            </fieldset>
+        </form>
+        <section id='dog-images' class='hide'>
+            <h2>Here are some cute dogs!</h2>
+            <img class='js-results-img'>
+        </section>
+        </main>
+    </body>
+</html>
