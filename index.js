@@ -2,60 +2,31 @@
 
 function getDogImages() {
   // this function calls on the API
+  let responseImages;
   fetch('https://dog.ceo/api/breeds/image/random/3')
     .then(response => response.json())
-    .then(responseImages => displayImages(responseImages))
+    .then(responseJson => displayImages(responseJson))
     .catch(error => alert('Something went wrong. Try again later.'));
 }
 
 function displayImages(responseImages) {
-  // this function displays the data received from the call
-    // logs results to the console
-    console.log(responseImages);
-
-    let dogImages = responseImages.body;
-
-    // adds the image to the html
-    $('.js-results-img').html(
-      `<img src='${dogImages.message}' class='js-results-img'>`)
-    
-    // displays the html block
-    $('#dog-images').toggleClass('hide');
+  // adds the image into html
+  $('.dog-img').html(`<img src="${responseImages.message[0]}" class="results-img">`);
+  // displays the image-list section
+  $('.image-list').toggleClass('hide');
 }
 
-function watchForm(dogImages) {
-  $('form').submit(function() {
-    event.preventDefault();
-    //let repeat = $('.number-input').val();
-    //let message = responseImages;
-    //let images = responseImages.body;
-    let i;
-    for (i = 0; i <= dogImages.length; i++) {
-      displayImages();
-    };
-  });
-}
-
-// I need to look at the array and then find the given number - 1 as the last position in the array to display
-
-/*function handleImages() {
-    getDogImages();
-    displayImages();
-}
-
-function handleForm() {
+function handleForm(responseJson) {
   // this function disables the default form behavior
   // it records the number input by the user
   $('form').submit(event => {
     event.preventDefault();
-    let repeat = $('.number-input').val();
-    let i;
-    for (i = 0; i <= repeat; i++) {
-        handleImages();
-    };
+    displayImages();
+    
   });
 }
 
-$(handleForm);*/
-
-$(watchForm);
+$(function() {
+    console.log('App loaded! Waiting for submit!');
+    handleForm();
+  });
