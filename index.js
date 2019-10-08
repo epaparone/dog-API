@@ -2,27 +2,29 @@
 
 function getDogImages() {
   // this function calls on the API
-  let responseImages;
+  //let responseJson;
   fetch('https://dog.ceo/api/breeds/image/random/3')
     .then(response => response.json())
-    .then(responseJson => displayImages(responseJson))
+    .then(responseJson => console.log(responseJson))
     .catch(error => alert('Something went wrong. Try again later.'));
 }
 
-function displayImages(responseImages) {
+function displayImages() {
   // adds the image into html
-  $('.dog-img').html(`<img src="${responseImages.message[0]}" class="results-img">`);
-  // displays the image-list section
-  $('.image-list').toggleClass('hide');
+  //console.log(responseJson);
+  $('.dog-img').html(`<img src="${responseJson.message}" class="results-img">`);
+  
 }
 
-function handleForm(responseJson) {
+function handleForm() {
   // this function disables the default form behavior
   // it records the number input by the user
   $('form').submit(event => {
     event.preventDefault();
-    displayImages();
-    
+    getDogImages();
+    responseJson.forEach(displayImages());
+    // displays the image-list section
+    $('.image-list').toggleClass('hide');
   });
 }
 
