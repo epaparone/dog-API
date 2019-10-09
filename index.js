@@ -3,7 +3,7 @@
 function getDogImages() {
   // this function calls on the API
   //let responseJson;
-  fetch('https://dog.ceo/api/breeds/image/random/3')
+  fetch(`https://dog.ceo/api/breeds/image/random/${$('.number-input').val()}`)
     .then(response => response.json())
     .then(responseJson => displayResults(responseJson))
     .catch(error => alert('Something went wrong. Try again later.'));
