@@ -5,30 +5,36 @@ function getDogImages() {
   //let responseJson;
   fetch('https://dog.ceo/api/breeds/image/random/3')
     .then(response => response.json())
-    .then(responseJson => console.log(responseJson))
+    .then(responseJson => displayResults(responseJson))
     .catch(error => alert('Something went wrong. Try again later.'));
 }
 
-function displayImages() {
-  // adds the image into html
-  //console.log(responseJson);
-  $('.dog-img').html(`<img src="${responseJson.message}" class="results-img">`);
-  
+function displayResults(responseJson) {
+  console.log(responseJson);
+
+  for (let i = 0; i <= responseJson.length; i++) {
+    // adds imgs to image list html
+    function addImage() {
+      $('.dog-img').append(`<img src="${responseJson.message}" alt="dog image" class="results-img">`);
+    };
+    responseJson.forEach(addImage());
+    console.log('the for loop is working');
+  };
+
+  // displays image list section
+  $('.image-list').toggleClass('hide');
 }
 
-function handleForm() {
-  // this function disables the default form behavior
-  // it records the number input by the user
+function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
+    // gets images
     getDogImages();
-    responseJson.forEach(displayImages());
-    // displays the image-list section
-    $('.image-list').toggleClass('hide');
-  });
+    //$('.image-list').toggleClass('hide'); 
+  })
 }
 
 $(function() {
-    console.log('App loaded! Waiting for submit!');
-    handleForm();
-  });
+  console.log('App loaded! Waiting for submit!');
+  watchForm();
+})
