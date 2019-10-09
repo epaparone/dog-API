@@ -10,15 +10,13 @@ function getDogImages() {
 }
 
 function displayResults(responseJson) {
-  console.log(responseJson);
+  console.log(responseJson.message);
 
-  for (let i = 0; i <= responseJson.length; i++) {
+  for (let i = 0; i < responseJson.message.length; i++) {
     // adds imgs to image list html
-    function addImage() {
-      $('.dog-img').append(`<img src="${responseJson.message}" alt="dog image" class="results-img">`);
-    };
-    responseJson.forEach(addImage());
-    console.log('the for loop is working');
+    $('.dog-img').append(`<img src="${responseJson.message[i]}" alt="dog image" class="results-img">`);
+
+  console.log('the for loop is working');
   };
 
   // displays image list section

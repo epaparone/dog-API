@@ -1,3 +1,14 @@
+body {
+    width: 85%;
+    margin: 0 auto;
+}
+
 .hide {
     display: none;
+}
+
+img {
+    width: 50%;
+    display: block;
+    margin: 10px auto;
 }
