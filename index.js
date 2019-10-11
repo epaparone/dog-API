@@ -20,19 +20,28 @@ function displayResults(responseJson) {
   };
 
   // displays image list section
-  $('.image-list').toggleClass('hide');
+  $('.image-list').removeClass('hide');
 }
 
 function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
     // gets images
+    $('.dog-img').empty();
     getDogImages();
     //$('.image-list').toggleClass('hide'); 
   })
 }
 
+/*function resetButton() {
+  $('.reset').click(event => {
+    event.preventDefault();
+    location.reload();
+  })
+}*/
+
 $(function() {
   console.log('App loaded! Waiting for submit!');
   watchForm();
+  //resetButton();
 })
